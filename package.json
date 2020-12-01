@@ -1,0 +1,33 @@
+{
+  "name": "react-krpano",
+  "version": "0.0.1",
+  "description": "React bindings for krpano.",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xLLLLH/react-krpano.git"
+  },
+  "keywords": [
+    "react",
+    "krpano"
+  ],
+  "author": "0xLLLLH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0xLLLLH/react-krpano/issues"
+  },
+  "homepage": "https://github.com/0xLLLLH/react-krpano#readme",
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "typescript": "^4.1.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
