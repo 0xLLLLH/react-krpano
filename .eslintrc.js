@@ -15,6 +15,7 @@ module.exports = {
             node: true,
         },
     },
+    plugins: ['react-hooks'],
     rules: {
         // typescript
         '@typescript-eslint/no-parameter-properties': 'off',
@@ -29,6 +30,10 @@ module.exports = {
             'off',
             { allowExpressions: true, allowTypedFunctionExpressions: true },
         ],
+
+        // hooks
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
 
         // misc
         'no-implicit-coercion': 'off',

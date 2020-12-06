@@ -8,7 +8,6 @@ export interface IKrpanoConfig {
 
 export interface IKrpanoRendererObject {
     get(key: string): any;
-    set(key: string): any;
     call(action: string): void;
 }
 
