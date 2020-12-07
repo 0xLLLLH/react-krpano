@@ -13,7 +13,9 @@
   "engines": {
     "node": ">=10"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "npx parcel ./test/index.html"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/0xLLLLH/react-krpano.git"

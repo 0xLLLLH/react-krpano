@@ -16,12 +16,15 @@ React bindings for krpano.
 基本组件：
 - [ ] Krpano
   - [x] 加载指定xml
-- [ ] Preview组件
 - [ ] View
-  - [x] fov,hlookat,vlookat
-  - [ ] view limits
+  - [x] 基本属性：fov,hlookat,vlookat,fovmin,fovmax
 - [ ] Hotspot
 - [ ] Scene
+  - [ ] 设置preview
+  - [ ] 设置单个图片及多级图片
 - [ ] Layer
+- [ ] Events
 
 插件功能：
+- [ ] 音乐
+- [ ] 自动旋转
