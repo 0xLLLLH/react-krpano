@@ -15,16 +15,6 @@ const Krpano: React.FC<KrpanoProps> = ({ currentScene, xml, children }) => {
     const [renderer, setRenderer] = React.useState<IKrpanoRendererObject | null>(null);
     const onReady = React.useCallback(
         (obj) => {
-            // TODO: load default xml while xml config not provided
-            const xmlstring =
-                xml || '<krpano>' + '<view hlookat="0" vlookat="0" fov="100" distortion="0.0" />' + '</krpano>';
-
-            obj.call(buildKrpanoAction('loadxml', [escape(xmlstring), 'null, MERGE, BLEND(0.5)']));
-
-            if (process.env.NODE_ENV === 'production') {
-                console.log('load default xml');
-            }
-
             setRenderer(obj);
             Logger.log('Renderer ready.');
         },
@@ -33,6 +23,7 @@ const Krpano: React.FC<KrpanoProps> = ({ currentScene, xml, children }) => {
 
     useKrpano({
         target: 'krpano',
+        xml: xml || null,
         onready: onReady,
     });
 

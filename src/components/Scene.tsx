@@ -2,7 +2,22 @@ import React, { useContext } from 'react';
 import { CurrentSceneContext } from '../contexts/CurrentSceneContext';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
 import { useSyncToKrpano } from '../hooks/useKrpano';
-import { buildKrpanoAction, buildKrpanoTagSetterActions, Logger } from '../utils';
+import { buildKrpanoAction, buildKrpanoTagSetterActions, buildXML, Logger, XMLMeta } from '../utils';
+
+export interface SceneImage {
+    type: string;
+    url: string;
+}
+
+export interface SceneImageWithMultires {
+    type: string;
+    url: string;
+    // multires props
+    tiledImageWidth: number;
+    tiledImageHeight: number;
+    tileSize?: number;
+    asPreview?: boolean;
+}
 
 interface SceneProps {
     name: string;
@@ -12,20 +27,71 @@ interface SceneProps {
     autoLoad?: boolean;
     /** 直接指定scene的xml内容 */
     content?: string;
+    /** image标签的附加属性，仅少部分情况用到 */
+    imageTagAttributes?: Record<string, string | number | boolean>;
+    /** Scene包含的图片。数组的长度大于1时按multires解析为多个level */
+    images?: [SceneImage] | SceneImageWithMultires[];
 }
 
-const Scene: React.FC<SceneProps> = ({ name, previewUrl, autoLoad = false, children }) => {
+const Scene: React.FC<SceneProps> = ({
+    name,
+    previewUrl,
+    imageTagAttributes = {},
+    images = [],
+    autoLoad = false,
+    children,
+}) => {
     const renderer = useContext(KrpanoRendererContext);
     const currentScene = useContext(CurrentSceneContext);
 
     React.useEffect(() => {
+        const contentImageMeta: XMLMeta = {
+            tag: 'image',
+            attrs: imageTagAttributes,
+            children: [],
+        };
+
+        // multires
+        if (images.length > 1) {
+            contentImageMeta.children!.push(
+                ...(images as SceneImageWithMultires[]).map(
+                    ({ tiledImageWidth, tiledImageHeight, tileSize, asPreview = false, type, ...img }) => {
+                        const imgXML: XMLMeta = {
+                            tag: 'level',
+                            // FIXME: tiledImageWidth等值使用者不一定会提供，需要进行检查、提示以及fallback
+                            attrs: {
+                                tiledImageWidth,
+                                tiledImageHeight,
+                                tileSize,
+                                asPreview,
+                            },
+                            children: [
+                                {
+                                    tag: type,
+                                    attrs: { ...img },
+                                },
+                            ],
+                        };
+
+                        return imgXML;
+                    },
+                ),
+            );
+        } else if (images.length === 1) {
+            const { type, ...img } = images[0] as SceneImage;
+
+            contentImageMeta.children!.push({
+                tag: type,
+                attrs: { ...img },
+            });
+        }
+
         renderer?.call(
             buildKrpanoTagSetterActions('scene', name, {
                 content: `
         ${previewUrl ? `<preview url="${previewUrl}" />` : ''}
-        <image>
-            <cube url="https://qhyxpicoss.kujiale.com/r/2017/09/01/L3D221IS3QKUQUQBOGAPEK3P3XU888_7500x1250.jpg_%s" />
-        </image>`,
+        ${images.length > 0 ? buildXML(contentImageMeta) : ''}
+        `,
             }),
         );
 
@@ -37,7 +103,7 @@ const Scene: React.FC<SceneProps> = ({ name, previewUrl, autoLoad = false, child
         return () => {
             renderer?.get('scene').removeItem(name);
         };
-    }, [renderer, name]);
+    }, [renderer, name, images, imageTagAttributes]);
 
     React.useEffect(() => {
         if (currentScene === name) {

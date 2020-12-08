@@ -2,9 +2,11 @@
  * @see https://krpano.com/docu/html/#wmode
  */
 export interface IKrpanoConfig {
-    // swf: string; // flash模式下用到的swf文件，非必须
-    /** 全景图xml路径 */
-    xml?: string;
+    /**
+     * 全景图xml路径。需要手动设置为null才不会加载。
+     * @see https://krpano.com/docu/html/#xml
+     */
+    xml?: string | null;
     /**  挂载点id */
     target: string;
     swf?: string;
