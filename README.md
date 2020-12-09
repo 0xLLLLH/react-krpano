@@ -64,7 +64,7 @@ const Comp = () => {
         <Krpano currentScene={currentScene}>
             <View fov={90} fovmin={80} fovmax={120} />
             {scenes.map(sc => (
-                <Scene name={sc.name} previewUrl={sc.previewUrl} autoLoad={true}>
+                <Scene name={sc.name} previewUrl={sc.previewUrl}>
                     {sc.hotspots.map(pt => <Hotspot {...pt} />)}
                 </Scene>
             ))}
@@ -101,7 +101,7 @@ const Comp = () => {
         <Krpano>
             <View fov={90} fovmin={80} fovmax={120} />
             {scenes.map(sc => sc.name === currentScene ? (
-                <Scene name={sc.name} previewUrl={sc.previewUrl} autoLoad={true}>
+                <Scene name={sc.name} previewUrl={sc.previewUrl} >
                     {sc.hotspots.map(pt => <Hotspot {...pt} />)}
                 </Scene>
              : null))}

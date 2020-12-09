@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
-import { useSyncToKrpano } from '../hooks/useKrpano';
-import { buildKrpanoAction } from '../utils';
 
 interface ViewProps {
     hlookat?: number;

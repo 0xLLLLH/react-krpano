@@ -22,8 +22,6 @@ interface SceneProps {
     name: string;
     previewUrl?: string;
     onStart?: () => void;
-    /** 是否自动加载 */
-    autoLoad?: boolean;
     /** 直接指定scene的xml内容 */
     content?: string;
     /** image标签的附加属性，仅少部分情况用到 */
@@ -32,14 +30,7 @@ interface SceneProps {
     images?: [SceneImage] | SceneImageWithMultires[];
 }
 
-const Scene: React.FC<SceneProps> = ({
-    name,
-    previewUrl,
-    imageTagAttributes = {},
-    images = [],
-    autoLoad = false,
-    children,
-}) => {
+const Scene: React.FC<SceneProps> = ({ name, previewUrl, imageTagAttributes = {}, images = [], children }) => {
     const renderer = useContext(KrpanoRendererContext);
     const currentScene = useContext(CurrentSceneContext);
 
@@ -95,11 +86,6 @@ const Scene: React.FC<SceneProps> = ({
             }`,
         });
 
-        if (autoLoad) {
-            renderer?.loadScene(name);
-            Logger.log(`Scene ${name} auto loaded.`);
-        }
-
         return () => {
             renderer?.removeScene(name);
         };
@@ -112,7 +98,7 @@ const Scene: React.FC<SceneProps> = ({
         }
     }, [name, renderer, currentScene]);
 
-    return <div className="scene">{currentScene === name || autoLoad ? children : null}</div>;
+    return <div className="scene">{currentScene === name ? children : null}</div>;
 };
 
 export default Scene;

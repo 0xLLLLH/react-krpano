@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
+import { Logger } from '../utils';
 
 interface ImageHotspotConfig {
     name: string;
@@ -43,6 +44,7 @@ const Hotspot: React.FC<HotspotProps> = ({ name, children, ...hotspotAttrs }) =>
 
     React.useEffect(() => {
         renderer?.setTag('hotspot', name, { ...hotspotAttrs });
+        Logger.log(`hotspot ${name} updated due to attrs change`);
     }, [renderer, name, hotspotAttrs]);
 
     return <div className="hotspot">{children}</div>;
