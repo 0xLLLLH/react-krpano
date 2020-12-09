@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Krpano, View, Scene } from '../src';
+import { Krpano, View, Scene, Hotspot } from '../src';
 
 interface CompProps {}
 
 const Comp: React.FC<CompProps> = () => {
-    // const [hlookat, setH] = useState(0);
+    const scenes = ['scene0', 'scene1'];
+    const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
 
-    // useEffect(() => {
-    //     console.log('hlookat', hlookat);
-    //     setTimeout(() => {
-    //         setH((hlookat + 1) % 180);
-    //     }, 100);
-    // });
+    useEffect(() => {
+        setTimeout(() => {
+            setCurrentSceneIndex((currentSceneIndex + 1) % scenes.length);
+        }, 30000);
+    });
 
     return (
-        <Krpano currentScene="scene1">
+        <Krpano currentScene={scenes[currentSceneIndex]}>
             {/* <View fov={90} fovmin={80} fovmax={120} /> */}
             <Scene
                 name="scene0"
@@ -65,6 +65,14 @@ const Comp: React.FC<CompProps> = () => {
                     },
                 ]}
             >
+                <Hotspot
+                    name="hotspot0"
+                    type="image"
+                    url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
+                    ath={0}
+                    atv={0}
+                    visible={true}
+                />
                 <View fov={80} />
             </Scene>
         </Krpano>

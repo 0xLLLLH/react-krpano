@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { CurrentSceneContext } from '../contexts/CurrentSceneContext';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
-import { useSyncToKrpano } from '../hooks/useKrpano';
-import { buildKrpanoAction, buildKrpanoTagSetterActions, buildXML, Logger, XMLMeta } from '../utils';
+import { buildXML, Logger, XMLMeta } from '../utils';
 
 export interface SceneImage {
     type: string;
@@ -62,7 +61,6 @@ const Scene: React.FC<SceneProps> = ({
                             attrs: {
                                 tiledImageWidth,
                                 tiledImageHeight,
-                                tileSize,
                                 asPreview,
                             },
                             children: [
@@ -73,6 +71,10 @@ const Scene: React.FC<SceneProps> = ({
                             ],
                         };
 
+                        if (tileSize) {
+                            imgXML.attrs = Object.assign(imgXML.attrs, { tileSize });
+                        }
+
                         return imgXML;
                     },
                 ),
@@ -80,34 +82,32 @@ const Scene: React.FC<SceneProps> = ({
         } else if (images.length === 1) {
             const { type, ...img } = images[0] as SceneImage;
 
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             contentImageMeta.children!.push({
                 tag: type,
                 attrs: { ...img },
             });
         }
 
-        renderer?.call(
-            buildKrpanoTagSetterActions('scene', name, {
-                content: `
-        ${previewUrl ? `<preview url="${previewUrl}" />` : ''}
-        ${images.length > 0 ? buildXML(contentImageMeta) : ''}
-        `,
-            }),
-        );
+        renderer?.setTag('scene', name, {
+            content: `${previewUrl ? `<preview url="${previewUrl}" />` : ''}${
+                images.length > 0 ? buildXML(contentImageMeta) : ''
+            }`,
+        });
 
         if (autoLoad) {
-            renderer?.call(buildKrpanoAction('loadscene', [name, 'null, MERGE, BLEND(0.5)']));
+            renderer?.loadScene(name);
             Logger.log(`Scene ${name} auto loaded.`);
         }
 
         return () => {
-            renderer?.get('scene').removeItem(name);
+            renderer?.removeScene(name);
         };
     }, [renderer, name, images, imageTagAttributes]);
 
     React.useEffect(() => {
         if (currentScene === name) {
-            renderer?.call(buildKrpanoAction('loadscene', [name, 'null, MERGE, BLEND(0.5)']));
+            renderer?.loadScene(name);
             Logger.log(`Scene ${name} loaded due to currentScene change.`);
         }
     }, [name, renderer, currentScene]);

@@ -2,8 +2,9 @@ import React from 'react';
 import { CurrentSceneContext } from '../contexts/CurrentSceneContext';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
 import { useKrpano } from '../hooks/useKrpano';
+import KrpanoActionProxy from '../KrpanoActionProxy';
 import { IKrpanoRendererObject } from '../types';
-import { buildKrpanoAction, Logger } from '../utils';
+import { Logger } from '../utils';
 
 interface KrpanoProps {
     currentScene?: string;
@@ -12,10 +13,10 @@ interface KrpanoProps {
 }
 
 const Krpano: React.FC<KrpanoProps> = ({ currentScene, xml, children }) => {
-    const [renderer, setRenderer] = React.useState<IKrpanoRendererObject | null>(null);
+    const [renderer, setRenderer] = React.useState<KrpanoActionProxy | null>(null);
     const onReady = React.useCallback(
-        (obj) => {
-            setRenderer(obj);
+        (obj: IKrpanoRendererObject) => {
+            setRenderer(new KrpanoActionProxy(obj));
             Logger.log('Renderer ready.');
         },
         [xml],

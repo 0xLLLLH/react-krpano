@@ -1,5 +1,4 @@
 import React from 'react';
+import KrpanoActionProxy from '../KrpanoActionProxy';
 
-import { IKrpanoRendererObject } from '../types';
-
-export const KrpanoRendererContext = React.createContext<IKrpanoRendererObject | null>(null);
+export const KrpanoRendererContext = React.createContext<KrpanoActionProxy | null>(null);

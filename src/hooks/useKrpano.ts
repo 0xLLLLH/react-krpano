@@ -1,4 +1,5 @@
 import React from 'react';
+import KrpanoActionProxy from '../KrpanoActionProxy';
 import { IKrpanoConfig, IKrpanoRendererObject } from '../types';
 
 /**
@@ -7,11 +8,7 @@ import { IKrpanoConfig, IKrpanoRendererObject } from '../types';
  * @param syncAction 具体的同步命令,可以是固定的也可以是由observeValue组成的
  * @param observeValue observeValue变化时执行
  */
-export const useSyncToKrpano = (
-    renderer: IKrpanoRendererObject | null,
-    syncAction: string,
-    observeValue: number | string,
-): void => {
+export const useSyncToKrpano = (renderer: KrpanoActionProxy | null, syncAction: string, observeValue: any): void => {
     React.useEffect(() => {
         if (!renderer) {
             console.error(`Krpano renderer not found, exec sync action "${syncAction}" fail.`);
