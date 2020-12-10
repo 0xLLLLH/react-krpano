@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { Krpano, View, Scene, Hotspot } from '../src';
+import ReactDOM, { render } from 'react-dom';
+import { Krpano, View, Scene, Hotspot, Events } from '../src';
 
 interface CompProps {}
 
@@ -40,10 +40,13 @@ const Comp: React.FC<CompProps> = () => {
     //     setTimeout(() => {
     //         setCurrentSceneIndex((currentSceneIndex + 1) % scenes.length);
     //     }, 10000);
-    // });
+    // }, []);
 
     return (
-        <Krpano currentScene={scenes[currentSceneIndex]}>
+        <Krpano
+            currentScene={scenes[currentSceneIndex]}
+            // xml="/test.xml"
+        >
             {/* <View fov={90} fovmin={80} fovmax={120} /> */}
             <Scene
                 name="scene0"
@@ -71,12 +74,24 @@ const Comp: React.FC<CompProps> = () => {
                     name="hotspot0"
                     type="image"
                     url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
-                    ath={0}
-                    atv={0}
+                    ath={50}
+                    atv={20}
                     visible={true}
                 />
                 <View fov={80} />
+
+                <Events
+                    name="localEvent"
+                    onClick={() => {
+                        console.log('localEvent');
+                    }}
+                />
             </Scene>
+            <Events
+                onClick={(renderer) => {
+                    console.log(renderer.get('view.fov'));
+                }}
+            />
         </Krpano>
     );
 };

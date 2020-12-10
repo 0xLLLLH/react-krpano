@@ -130,6 +130,9 @@ ReactDOM.render(<Comp />, document.getElementById('app'));
 插件功能：
 - [ ] 音乐
 - [ ] 自动旋转
+
+测试：
+- [ ] 性能测试，是否存在不必要的更新？
 ## 已知问题
 
 - [ ] Hotspot的keep不生效（应该）

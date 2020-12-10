@@ -19,13 +19,13 @@ export default class KrpanoActionProxy {
     }
 
     setTag(
-        tag: 'scene' | 'hotspot' | 'layer' | 'view',
+        tag: 'scene' | 'hotspot' | 'layer' | 'view' | 'events',
         name: string | null,
         attrs: Record<string, string | boolean | number | undefined>,
     ): void {
         let nexttick = false;
 
-        if (tag === 'hotspot') {
+        if (tag === 'hotspot' || tag === 'events') {
             nexttick = true;
         }
 

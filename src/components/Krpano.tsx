@@ -8,7 +8,7 @@ import { Logger } from '../utils';
 
 interface KrpanoProps {
     currentScene?: string;
-    /** Krpano XML内容 */
+    /** Krpano XML地址 */
     xml?: string;
 }
 
