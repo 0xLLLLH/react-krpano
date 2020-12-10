@@ -1,3 +1,5 @@
+import KrpanoActionProxy from './KrpanoActionProxy';
+
 /**
  * @see https://krpano.com/docu/html/#wmode
  */
@@ -31,13 +33,15 @@ export interface IKrpanoConfig {
     mobilescale?: number;
     touchdevicemousesupport?: boolean;
     fakedevice?: string;
-    onready?: (renderer: IKrpanoRendererObject) => void;
+    onready?: (renderer: NativeKrpanoRendererObject) => void;
 }
 
-export interface IKrpanoRendererObject {
+export interface NativeKrpanoRendererObject {
     get(key: string): any;
     call(action: string): void;
 }
+
+export type EventCallback = (renderer: KrpanoActionProxy) => void;
 
 declare global {
     interface Window {

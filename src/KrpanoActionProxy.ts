@@ -1,11 +1,21 @@
-import { IKrpanoRendererObject } from './types';
+import { NativeKrpanoRendererObject } from './types';
 import { buildKrpanoAction, buildKrpanoTagSetterActions } from './utils';
 
-export default class KrpanoActionProxy {
-    krpanoRenderer?: IKrpanoRendererObject;
+export type HandlerFunc = (renderer: KrpanoActionProxy) => void;
 
-    constructor(krpanoRenderer?: IKrpanoRendererObject) {
+interface EventHandler {
+    eventName: string;
+    selector: string;
+    handler: HandlerFunc;
+}
+export default class KrpanoActionProxy {
+    name: string;
+    krpanoRenderer?: NativeKrpanoRendererObject;
+    eventHandlers: EventHandler[] = [];
+
+    constructor(krpanoRenderer?: NativeKrpanoRendererObject, name = 'ReactKrpanoActionProxy') {
         this.krpanoRenderer = krpanoRenderer;
+        this.name = name;
     }
 
     call(action: string, nexttick = false): void {
@@ -53,5 +63,46 @@ export default class KrpanoActionProxy {
     }
     removeHotspot(name: string): void {
         this.call(buildKrpanoAction('removehotspot', name), true);
+    }
+
+    on(eventName: string, selector: string, handler: HandlerFunc): this {
+        this.eventHandlers.push({
+            eventName: eventName.toLowerCase(),
+            selector,
+            handler,
+        });
+        return this;
+    }
+
+    off(eventName: string, selector: string, handler: HandlerFunc): void {
+        this.eventHandlers = this.eventHandlers.filter(
+            (e) => !(e.eventName === eventName.toLowerCase() && e.selector === selector && e.handler === handler),
+        );
+    }
+
+    fire(eventName: string, selector: string): void {
+        this.eventHandlers
+            .filter((e) => e.eventName === eventName.toLowerCase() && e.selector === selector)
+            .map(({ handler }) => handler(this));
+    }
+
+    bindEvents(selector: string, mapEventsToHandler: Record<string, HandlerFunc | undefined>): void {
+        Object.keys(mapEventsToHandler).map((eventName) => {
+            const func = mapEventsToHandler[eventName];
+
+            if (func) {
+                this.on(eventName, selector, func);
+            }
+        });
+    }
+
+    unbindEvents(selector: string, mapEventsToHandler: Record<string, HandlerFunc | undefined>): void {
+        Object.keys(mapEventsToHandler).map((eventName) => {
+            const func = mapEventsToHandler[eventName];
+
+            if (func) {
+                this.off(eventName, selector, func);
+            }
+        });
     }
 }

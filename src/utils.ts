@@ -21,6 +21,7 @@ export const buildKrpanoTagSetterActions = (
     Object.keys(attrs)
         .map((key) => {
             const val = attrs[key];
+            key = key.toLowerCase();
             if (val === undefined) {
                 return '';
             }
@@ -69,3 +70,27 @@ export const buildXML = ({ tag, attrs, children }: XMLMeta): string => {
     }
     return `<${tag} ${attributes} />`;
 };
+
+export const mapObject = (
+    obj: Record<string, unknown>,
+    mapper: (key: string, value: unknown) => Record<string, unknown>,
+): Record<string, unknown> => {
+    return Object.assign(
+        {},
+        ...Object.keys(obj).map((key) => {
+            const value = obj[key];
+            return mapper(key, value);
+        }),
+    );
+};
+
+export const mapEventPropsToJSCall = (
+    obj: Record<string, unknown>,
+    getString: (key: string, value: unknown) => string,
+): Record<string, string> =>
+    mapObject(obj, (key, value) => {
+        if (key.startsWith('on') && typeof value === 'function') {
+            return { [key]: getString(key, value) };
+        }
+        return {};
+    }) as Record<string, string>;

@@ -1,10 +1,7 @@
-import { stringify } from 'querystring';
 import React from 'react';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
-import KrpanoActionProxy from '../KrpanoActionProxy';
-import { Logger } from '../utils';
-
-type EventCallback = (renderer: KrpanoActionProxy) => void;
+import { EventCallback } from '../types';
+import { Logger, mapEventPropsToJSCall, mapObject } from '../utils';
 
 interface EventsConfig {
     /** 事件名，若存在该参数则为局部事件 */
@@ -44,49 +41,28 @@ interface EventsConfig {
 
 interface EventsProps extends EventsConfig {}
 
-const GlobalEventName = '__GlobalEvents';
+const GlobalEvents = '__GlobalEvents';
 
-const Events: React.FC<EventsProps> = ({ name, children, ...EventsAttrs }) => {
+const Events: React.FC<EventsProps> = ({ name, keep, children, ...EventsAttrs }) => {
     const renderer = React.useContext(KrpanoRendererContext);
+    const EventSelector = `events[${name || GlobalEvents}]`;
 
     React.useEffect(() => {
-        if (!(window as any).ReactKrpanoEvents) {
-            (window as any).ReactKrpanoEvents = {};
-        }
-
-        (window as any).ReactKrpanoEvents[name || GlobalEventName] = (
-            eventName: keyof Omit<EventsConfig, 'name' | 'keep'>,
-        ) => {
-            console.log(eventName);
-            const callback = EventsAttrs[eventName];
-            if (typeof callback === 'function' && renderer) {
-                callback(renderer);
-            }
-        };
+        renderer?.bindEvents(EventSelector, { ...EventsAttrs });
 
         return () => {
-            (window as any).ReactKrpanoEvents[name || GlobalEventName] = null;
+            renderer?.unbindEvents(EventSelector, { ...EventsAttrs });
         };
-    }, [renderer, EventsAttrs]);
+    }, [renderer, EventsAttrs, EventSelector]);
 
     React.useEffect(() => {
         renderer?.setTag(
             'events',
             // 全局事件直接设置
             name || null,
-            Object.assign(
-                {},
-                ...Object.keys(EventsAttrs).map((key) => ({
-                    [key.toLowerCase()]: `js(ReactKrpanoEvents.${name || GlobalEventName}(${key}))`,
-                })),
-            ),
+            mapEventPropsToJSCall({ ...EventsAttrs }, (key) => `js(${renderer.name}.fire(${key},${EventSelector}))`),
         );
-        // return () => {
-        //     renderer?.removeEvents(name);
-        // };
     }, []);
-
-    // React.useEffect(() => {}, [renderer, name, EventsAttrs]);
 
     return <div className="events"></div>;
 };

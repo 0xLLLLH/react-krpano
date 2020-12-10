@@ -33,8 +33,8 @@ const images = [
 ];
 
 const Comp: React.FC<CompProps> = () => {
-    const scenes = ['scene0', 'scene1'];
-    const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
+    const scenes = ['dynamic_scene0', 'dynamic_scene1'];
+    const [currentSceneIndex, setCurrentSceneIndex] = useState(1);
 
     // useEffect(() => {
     //     setTimeout(() => {
@@ -43,13 +43,10 @@ const Comp: React.FC<CompProps> = () => {
     // }, []);
 
     return (
-        <Krpano
-            currentScene={scenes[currentSceneIndex]}
-            // xml="/test.xml"
-        >
+        <Krpano currentScene={scenes[currentSceneIndex]}>
             {/* <View fov={90} fovmin={80} fovmax={120} /> */}
             <Scene
-                name="scene0"
+                name="dynamic_scene0"
                 // autoLoad={true}
                 // previewUrl="/preview.jpg"
                 imageTagAttributes={{
@@ -58,10 +55,17 @@ const Comp: React.FC<CompProps> = () => {
                 }}
                 images={images}
             >
+                <Hotspot
+                    name="hotspot0"
+                    type="image"
+                    url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
+                    ath={-50}
+                    atv={20}
+                />
                 <View fov={90} fovmin={80} fovmax={120} />
             </Scene>
             <Scene
-                name="scene1"
+                name="dynamic_scene1"
                 images={[
                     {
                         type: 'cube',
@@ -76,7 +80,10 @@ const Comp: React.FC<CompProps> = () => {
                     url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
                     ath={50}
                     atv={20}
-                    visible={true}
+                    onClick={(renderer) => {
+                        console.log('hotspotClicked');
+                        setCurrentSceneIndex((currentSceneIndex + 1) % scenes.length);
+                    }}
                 />
                 <View fov={80} />
 

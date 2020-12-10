@@ -22,7 +22,7 @@ interface SceneProps {
     name: string;
     previewUrl?: string;
     onStart?: () => void;
-    /** 直接指定scene的xml内容 */
+    /** 直接指定scene的xml内容。指定后会忽略其他设置 */
     content?: string;
     /** image标签的附加属性，仅少部分情况用到 */
     imageTagAttributes?: Record<string, string | number | boolean>;
@@ -30,7 +30,7 @@ interface SceneProps {
     images?: [SceneImage] | SceneImageWithMultires[];
 }
 
-const Scene: React.FC<SceneProps> = ({ name, previewUrl, imageTagAttributes = {}, images = [], children }) => {
+const Scene: React.FC<SceneProps> = ({ name, previewUrl, imageTagAttributes = {}, images = [], content, children }) => {
     const renderer = useContext(KrpanoRendererContext);
     const currentScene = useContext(CurrentSceneContext);
 
@@ -81,15 +81,17 @@ const Scene: React.FC<SceneProps> = ({ name, previewUrl, imageTagAttributes = {}
         }
 
         renderer?.setTag('scene', name, {
-            content: `${previewUrl ? `<preview url="${previewUrl}" />` : ''}${
-                images.length > 0 ? buildXML(contentImageMeta) : ''
-            }`,
+            content:
+                content ||
+                `${previewUrl ? `<preview url="${previewUrl}" />` : ''}${
+                    images.length > 0 ? buildXML(contentImageMeta) : ''
+                }`,
         });
 
         return () => {
             renderer?.removeScene(name);
         };
-    }, [renderer, name, images, imageTagAttributes]);
+    }, [renderer, name, images, imageTagAttributes, content]);
 
     React.useEffect(() => {
         if (currentScene === name) {
