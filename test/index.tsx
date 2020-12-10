@@ -8,25 +8,25 @@ const images = [
     {
         type: 'cube',
         url:
-            'https://qhrenderpicoss.kujiale.com/r/2020/11/08/L3D222S21ENDIK37RIAUI5L7ELUF3P3WO888.0_6000x1000.jpg_%s?x-oss-process=image/resize,w_512|image/indexcrop,x_512,i_%h|image/indexcrop,y_512,i_%v',
-        // tileSize: 512,
-        tiledImageWidth: 512,
-        tiledImageHeight: 512,
+            'https://qhrenderpicoss.kujiale.com/r/2020/11/08/L3D222S21ENDIK37RIAUI5L7ELUF3P3WO888.0_6000x1000.jpg_%s?x-oss-process=image/resize,w_256',
+
+        tiledImageWidth: 256,
+        tiledImageHeight: 256,
         asPreview: true,
     },
     {
         type: 'cube',
         url:
-            'https://qhrenderpicoss.kujiale.com/r/2020/11/08/L3D222S21ENDIK37RIAUI5L7ELUF3P3WO888.0_6000x1000.jpg_%s?x-oss-process=image/resize,w_1024|image/indexcrop,x_512,i_%h|image/indexcrop,y_512,i_%v',
-        // tileSize: 512,
-        tiledImageWidth: 1024,
-        tiledImageHeight: 1024,
+            'https://qhrenderpicoss.kujiale.com/r/2020/11/08/L3D222S21ENDIK37RIAUI5L7ELUF3P3WO888.0_6000x1000.jpg_%s?x-oss-process=image/resize,w_512|image/indexcrop,x_256,i_%h|image/indexcrop,y_256,i_%v',
+
+        tiledImageWidth: 512,
+        tiledImageHeight: 512,
     },
     {
         type: 'cube',
         url:
-            'https://qhrenderpicoss.kujiale.com/r/2020/11/08/L3D222S21ENDIK37RIAUI5L7ELUF3P3WO888.0_6000x1000.jpg_%s?x-oss-process=image/indexcrop,x_512,i_%h|image/indexcrop,y_512,i_%v',
-        // tileSize: 512,
+            'https://qhrenderpicoss.kujiale.com/r/2020/11/08/L3D222S21ENDIK37RIAUI5L7ELUF3P3WO888.0_6000x1000.jpg_%s?x-oss-process=image/indexcrop,x_256,i_%h|image/indexcrop,y_256,i_%v',
+
         tiledImageWidth: 1200,
         tiledImageHeight: 1200,
     },
@@ -34,7 +34,7 @@ const images = [
 
 const Comp: React.FC<CompProps> = () => {
     const scenes = ['scene0', 'scene1'];
-    const [currentSceneIndex, setCurrentSceneIndex] = useState(1);
+    const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
 
     // useEffect(() => {
     //     setTimeout(() => {
@@ -53,7 +53,7 @@ const Comp: React.FC<CompProps> = () => {
                 // autoLoad={true}
                 // previewUrl="/preview.jpg"
                 imageTagAttributes={{
-                    tilesize: 512,
+                    tilesize: 256,
                     baseindex: 0,
                 }}
                 images={images}
