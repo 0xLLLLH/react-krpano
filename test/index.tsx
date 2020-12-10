@@ -61,6 +61,9 @@ const Comp: React.FC<CompProps> = () => {
                     url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
                     ath={-50}
                     atv={20}
+                    onClick={() => {
+                        setCurrentSceneIndex((currentSceneIndex + 1) % scenes.length);
+                    }}
                 />
                 <View fov={90} fovmin={80} fovmax={120} />
             </Scene>
@@ -75,13 +78,12 @@ const Comp: React.FC<CompProps> = () => {
                 ]}
             >
                 <Hotspot
-                    name="hotspot0"
+                    name="hotspot1"
                     type="image"
                     url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
                     ath={50}
                     atv={20}
-                    onClick={(renderer) => {
-                        console.log('hotspotClicked');
+                    onClick={() => {
                         setCurrentSceneIndex((currentSceneIndex + 1) % scenes.length);
                     }}
                 />
