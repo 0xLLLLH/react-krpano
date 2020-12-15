@@ -7,19 +7,25 @@ import { NativeKrpanoRendererObject } from '../types';
 import { Logger } from '../utils';
 
 interface KrpanoProps {
+    className?: string;
     currentScene?: string;
     /** Krpano XML地址 */
     xml?: string;
+    onReady?: (renderer: KrpanoActionProxy) => void;
 }
 
-const Krpano: React.FC<KrpanoProps> = ({ currentScene, xml, children }) => {
+const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, xml, onReady, children }) => {
     const [renderer, setRenderer] = React.useState<KrpanoActionProxy | null>(null);
-    const onReady = React.useCallback(
+    const onReadyCallback = React.useCallback(
         (obj: NativeKrpanoRendererObject) => {
             const renderer = new KrpanoActionProxy(obj);
             (window as any)[renderer.name] = renderer;
             setRenderer(renderer);
             Logger.log('Renderer ready.');
+
+            if (onReady) {
+                onReady(renderer);
+            }
         },
         [xml]
     );
@@ -27,13 +33,15 @@ const Krpano: React.FC<KrpanoProps> = ({ currentScene, xml, children }) => {
     useKrpano({
         target: 'krpano',
         xml: xml || null,
-        onready: onReady,
+        onready: onReadyCallback,
     });
 
     return (
         <KrpanoRendererContext.Provider value={renderer}>
             <CurrentSceneContext.Provider value={currentScene || null}>
-                <div id="krpano">{renderer ? children : null}</div>
+                <div id="krpano" className={className}>
+                    {renderer ? children : null}
+                </div>
             </CurrentSceneContext.Provider>
         </KrpanoRendererContext.Provider>
     );

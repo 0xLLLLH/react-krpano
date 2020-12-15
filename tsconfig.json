@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES5",
+    "target": "ESNext",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",
@@ -15,8 +15,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
-    "importHelpers": false,
-    "noEmitHelpers": false,
+    "importHelpers": true,
+    "noEmitHelpers": true,
     "noEmit": true,
     "experimentalDecorators": true
   },
