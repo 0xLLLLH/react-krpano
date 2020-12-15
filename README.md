@@ -1,7 +1,7 @@
 # React Krpano
 React bindings for krpano.
 
-
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 ## 安装
 
 开发中，暂未发布npm包。
