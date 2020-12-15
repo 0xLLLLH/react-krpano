@@ -1,7 +1,7 @@
 import React from 'react';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
 import { EventCallback } from '../types';
-import { Logger, mapEventPropsToJSCall, mapObject } from '../utils';
+import { mapEventPropsToJSCall } from '../utils';
 
 interface EventsConfig {
     /** 事件名，若存在该参数则为局部事件 */
@@ -60,7 +60,7 @@ const Events: React.FC<EventsProps> = ({ name, keep, children, ...EventsAttrs })
             'events',
             // 全局事件直接设置
             name || null,
-            mapEventPropsToJSCall({ ...EventsAttrs }, (key) => `js(${renderer.name}.fire(${key},${EventSelector}))`),
+            mapEventPropsToJSCall({ ...EventsAttrs }, key => `js(${renderer.name}.fire(${key},${EventSelector}))`)
         );
     }, []);
 

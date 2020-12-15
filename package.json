@@ -1,11 +1,15 @@
 {
-  "name": "react-krpano",
+  "name": "@0xllllh/react-krpano",
   "version": "0.0.1",
   "description": "React bindings for krpano.",
-  "source": "src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/react-krpano.esm.js",
-  "typings": "dist/index.d.ts",
+  "source": "./src/index.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/cjs/index.js"
+  },
   "files": [
     "dist",
     "src"
@@ -14,7 +18,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "npx parcel ./test/index.html"
+    "start": "npx parcel ./test/index.html",
+    "clean": "rm -rf ./dist",
+    "build": "tsc -p ./tsconfig.typing.json && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -31,6 +37,19 @@
   },
   "homepage": "https://github.com/0xLLLLH/react-krpano#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@rollup/plugin-url": "^6.0.0",
     "@types/escape-html": "^1.0.0",
     "@types/eslint": "^7.2.5",
     "@types/jest": "^26.0.16",
@@ -48,6 +67,8 @@
     "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "rollup": "^2.34.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "typescript": "^4.1.2"
   },
   "peerDependencies": {
@@ -55,7 +76,9 @@
     "react-dom": "^17.0.1"
   },
   "dependencies": {
+    "@babel/runtime": "^7.12.5",
     "escape-html": "^1.0.3",
+    "tslib": "^2.0.3",
     "uuid": "^8.3.1"
   }
 }

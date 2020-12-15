@@ -31,7 +31,7 @@ export default class KrpanoActionProxy {
     setTag(
         tag: 'scene' | 'hotspot' | 'layer' | 'view' | 'events',
         name: string | null,
-        attrs: Record<string, string | boolean | number | undefined>,
+        attrs: Record<string, string | boolean | number | undefined>
     ): void {
         let nexttick = false;
 
@@ -76,18 +76,18 @@ export default class KrpanoActionProxy {
 
     off(eventName: string, selector: string, handler: HandlerFunc): void {
         this.eventHandlers = this.eventHandlers.filter(
-            (e) => !(e.eventName === eventName.toLowerCase() && e.selector === selector && e.handler === handler),
+            e => !(e.eventName === eventName.toLowerCase() && e.selector === selector && e.handler === handler)
         );
     }
 
     fire(eventName: string, selector: string): void {
         this.eventHandlers
-            .filter((e) => e.eventName === eventName.toLowerCase() && e.selector === selector)
+            .filter(e => e.eventName === eventName.toLowerCase() && e.selector === selector)
             .map(({ handler }) => handler(this));
     }
 
     bindEvents(selector: string, mapEventsToHandler: Record<string, HandlerFunc | undefined>): void {
-        Object.keys(mapEventsToHandler).map((eventName) => {
+        Object.keys(mapEventsToHandler).map(eventName => {
             const func = mapEventsToHandler[eventName];
 
             if (func) {
@@ -97,7 +97,7 @@ export default class KrpanoActionProxy {
     }
 
     unbindEvents(selector: string, mapEventsToHandler: Record<string, HandlerFunc | undefined>): void {
-        Object.keys(mapEventsToHandler).map((eventName) => {
+        Object.keys(mapEventsToHandler).map(eventName => {
             const func = mapEventsToHandler[eventName];
 
             if (func) {

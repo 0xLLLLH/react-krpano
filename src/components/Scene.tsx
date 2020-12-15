@@ -67,8 +67,8 @@ const Scene: React.FC<SceneProps> = ({ name, previewUrl, imageTagAttributes = {}
                         }
 
                         return imgXML;
-                    },
-                ),
+                    }
+                )
             );
         } else if (images.length === 1) {
             const { type, ...img } = images[0] as SceneImage;

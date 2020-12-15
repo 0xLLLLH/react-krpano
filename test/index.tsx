@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM, { render } from 'react-dom';
-import { Krpano, View, Scene, Hotspot, Events } from '../src';
+import { Krpano, View, Scene, Hotspot, Events } from '../dist/';
 
 interface CompProps {}
 
@@ -97,7 +97,7 @@ const Comp: React.FC<CompProps> = () => {
                 />
             </Scene>
             <Events
-                onClick={(renderer) => {
+                onClick={renderer => {
                     console.log(renderer.get('view.fov'));
                 }}
             />

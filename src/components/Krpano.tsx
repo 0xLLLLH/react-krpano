@@ -21,7 +21,7 @@ const Krpano: React.FC<KrpanoProps> = ({ currentScene, xml, children }) => {
             setRenderer(renderer);
             Logger.log('Renderer ready.');
         },
-        [xml],
+        [xml]
     );
 
     useKrpano({

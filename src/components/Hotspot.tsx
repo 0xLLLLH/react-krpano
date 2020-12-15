@@ -68,11 +68,8 @@ const Hotspot: React.FC<HotspotProps> = ({ name, children, ...hotspotAttrs }) =>
             name,
             Object.assign(
                 { ...hotspotAttrs },
-                mapEventPropsToJSCall(
-                    { ...hotspotAttrs },
-                    (key) => `js(${renderer?.name}.fire(${key},${EventSelector}))`,
-                ),
-            ),
+                mapEventPropsToJSCall({ ...hotspotAttrs }, key => `js(${renderer?.name}.fire(${key},${EventSelector}))`)
+            )
         );
         Logger.log(`hotspot ${name} updated due to attrs change`);
     }, [renderer, name, hotspotAttrs, EventSelector]);

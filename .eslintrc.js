@@ -15,6 +15,11 @@ module.exports = {
             node: true,
         },
     },
+    settings: {
+        react: {
+            version: '16',
+        },
+    },
     plugins: ['react-hooks'],
     rules: {
         // typescript
