@@ -1,6 +1,6 @@
 {
   "name": "@0xllllh/react-krpano",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React bindings for krpano.",
   "source": "./src/index.ts",
   "main": "./dist/cjs/index.js",
@@ -24,7 +24,9 @@
     "watch-bundle": "rollup -c -w",
     "build": "tsc -p ./tsconfig.typing.json && rollup -c",
     "lint": "eslint src --fix --ext .ts,.tsx",
-    "release": "standard-version"
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version",
+    "release:alpha": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease alpha",
+    "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc"
   },
   "repository": {
     "type": "git",
@@ -82,6 +84,7 @@
     "prettier": "^2.2.1",
     "rollup": "^2.34.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "standard-version": "^9.0.0",
     "typescript": "^4.1.2"
   },
   "peerDependencies": {
