@@ -10,7 +10,7 @@
 [npm-url]: https://www.npmjs.com/package/@0xllllh/react-krpano
 
 ## ✨ 特性
-* 更低的学习、使用及维护成本
+* 动态渲染场景和热点，无需生成xml
 * 使用Typescript开发，提供完整的类型定义文件。
 
 ## 🖥 依赖
@@ -20,11 +20,11 @@
 
 ## 📦 安装
 
-安装npm包
+* 安装npm包
 ``` bash
 yarn add @0xllllh/react-krpano
 ```
-从[Krpano官网](https://krpano.com/download/)下载最新的Krpano并解压得到krpano.js，然后通过script标签引入，使`window.embedpano`函数可用
+* 从[Krpano官网](https://krpano.com/download/)下载最新的Krpano并解压得到krpano.js，然后通过script标签引入，使`window.embedpano`函数可用
 ```html
 <script src="krpano.js"></script>
 ```
@@ -138,6 +138,68 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
+### 使用暂未支持的功能
+由于本项目刚开始开发，很多组件和功能都还没完善，如果有需要优先支持的功能可以提issue。倘若急于使用，则可以在获取到`KrpanoActionProxy`后自行调用krpano功能。
+
+各种回调函数都会获得KrpanoActionProxy实例作为参数，可以使用其中封装的方法来控制krpano。也可以通过`renderer.krpanoRenderer`获取krpano原生的实例。
+```tsx
+const App = () => {
+    const [currentScene, setCurrentScene] = React.useState('scene0');
+    const onHotspotClick = React.useCallback((renderer: KrpanoActionProxy) => {
+        console.log(renderer.get('view.fov'));
+        setCurrentScene('scene1');
+    }, []);
+
+    return (
+        <Krpano
+            className="App"
+            currentScene={currentScene}
+            onReady={renderer => {
+                console.log('Ready message from App', renderer.krpanoRenderer);
+            }}
+        >
+            <View fov={90} fovmin={80} fovmax={120} />
+            <Scene name="scene0" previewUrl="/preview.jpg">
+                <Hotspot
+                    name="hot"
+                    type="image"
+                    url="https://0xllllh.github.io/krpano-examples/images/hotspot.png"
+                    ath={0}
+                    atv={20}
+                    onClick={onHotspotClick}
+                />
+            </Scene>
+            <Scene name="scene1" previewUrl="/preview.jpg" />
+        </Krpano>
+    );
+};
+```
+
+此外，对于style和action等标签，可以在写在xml中，而后通过Krpano的`xml`属性引入。xml属性的内容会和React渲染的内容同时存在
+```xml
+<krpano>
+    <style name="hotspot_style" url="hotspot.png" scale="0.5" edge="top" distorted="true" onover="tween(scale,0.55);" onout="tween(scale,0.5);" />
+    ...
+</krpano>
+```
+```tsx
+const App = () => (
+    <Krpano
+        className="App"
+        currentScene="scene0"
+    >
+        <Scene name="scene0" previewUrl="/preview.jpg">
+            <Hotspot
+                name="hot"
+                type="image"
+                style="hotspot_style"
+                ath={0}
+                atv={20}
+            />
+        </Scene>
+    </Krpano>
+);
+```
 ## ❗️ 限制
 
 * 一个页面同一时间仅展示一个krpano全景图。如果需要同时展示多个全景图，更轻量的方案会比较合适。
