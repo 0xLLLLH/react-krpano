@@ -1,6 +1,6 @@
 module.exports = {
     hooks: {
-        'pre-commit': 'lint-staged',
+        'pre-commit': 'yarn pre-commit',
         'prepare-commit-msg': 'exec < /dev/tty && git cz --hook || true',
         'commit-msg': 'commitlint -e $GIT_PARAMS',
     },
