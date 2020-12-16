@@ -8,7 +8,7 @@ interface EventHandler {
     selector: string;
     handler: HandlerFunc;
 }
-export default class KrpanoActionProxy {
+export class KrpanoActionProxy {
     name: string;
     krpanoRenderer?: NativeKrpanoRendererObject;
     eventHandlers: EventHandler[] = [];
@@ -106,3 +106,5 @@ export default class KrpanoActionProxy {
         });
     }
 }
+
+export default KrpanoActionProxy;
