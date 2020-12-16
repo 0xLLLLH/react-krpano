@@ -28,7 +28,7 @@ module.exports = {
         '@typescript-eslint/explicit-member-accessibility': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-non-null-assertion': 'warn',
-        '@typescript-eslint/array-type': ['warn', { 'array-simple': true }],
+        '@typescript-eslint/array-type': ['warn', { default: 'array-simple' }],
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/no-object-literal-type-assertion': 'off',
         '@typescript-eslint/explicit-function-return-type': [
