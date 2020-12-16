@@ -4,6 +4,10 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/0xLLLLH/react-krpano/blob/main/LICENSE)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![NPM version][npm-image]][npm-url]
+
+[npm-image]: https://img.shields.io/npm/v/@0xllllh/react-krpano?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@0xllllh/react-krpano
 
 ## ✨ 特性
 * 更低的学习、使用及维护成本
