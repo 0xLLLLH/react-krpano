@@ -22,11 +22,13 @@
     "watch": "concurrently --kill-others \"npm:watch-*\"",
     "watch-types": "tsc -w -p ./tsconfig.typing.json",
     "watch-bundle": "rollup -c -w",
+    "prebuild": "yarn run clean",
     "build": "tsc -p ./tsconfig.typing.json && rollup -c",
     "lint": "eslint src --fix --ext .ts,.tsx",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "release:alpha": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease alpha",
-    "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc"
+    "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc",
+    "prepublish": "yarn run build"
   },
   "repository": {
     "type": "git",
