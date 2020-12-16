@@ -26,9 +26,7 @@
     "lint": "eslint src --fix --ext .ts,.tsx",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "release:alpha": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease alpha",
-    "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc",
-    "pre-commit": "lint-staged",
-    "commit": "yarn run pre-commit && git-cz --no-verify"
+    "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc"
   },
   "repository": {
     "type": "git",
