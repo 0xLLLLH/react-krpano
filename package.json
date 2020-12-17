@@ -1,6 +1,6 @@
 {
   "name": "@0xllllh/react-krpano",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React bindings for krpano.",
   "source": "./src/index.ts",
   "main": "./dist/cjs/index.js",

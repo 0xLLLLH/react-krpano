@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/0xLLLLH/react-krpano/compare/v0.1.0...v0.1.1) (2020-12-17)
+
+
+### Bug Fixes
+
+* 修复View组件children类型的问题 ([966c13a](https://github.com/0xLLLLH/react-krpano/commit/966c13a026c3efc75bbde1bb65079c98a073698b))
+
 ## [0.1.0](https://github.com/0xLLLLH/react-krpano/compare/v0.0.2...v0.1.0) (2020-12-17)
 
 
