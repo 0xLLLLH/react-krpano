@@ -205,4 +205,5 @@ const App = () => (
 ## 🔗 链接
 * [Home](https://0xllllh.github.io/react-krpano/)
 * [组件参数](https://0xllllh.github.io/react-krpano/#/components)
+* [CHANGELOG](./CHANGELOG.md)
 * [Krpano官方文档](https://krpano.com/docu/xml/)
