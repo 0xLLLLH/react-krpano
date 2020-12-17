@@ -26,16 +26,16 @@ interface EventsConfig {
     onMousedown?: EventCallback;
     onMouseup?: EventCallback;
     onMousewheel?: EventCallback;
-    oncontextmenu?: EventCallback;
+    onContextmenu?: EventCallback;
     onIdle?: EventCallback;
     onViewChange?: EventCallback;
     onViewChanged?: EventCallback;
     onResize?: EventCallback;
     onFrameBufferResize?: EventCallback;
-    onAutorotateStart?: EventCallback;
-    onAutorotateStop?: EventCallback;
-    onAutorotateOneRound?: EventCallback;
-    onAutorotateChange?: EventCallback;
+    onAutoRotateStart?: EventCallback;
+    onAutoRotateStop?: EventCallback;
+    onAutoRotateOneRound?: EventCallback;
+    onAutoRotateChange?: EventCallback;
     onIPhoneFullscreen?: EventCallback;
 }
 
