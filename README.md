@@ -203,4 +203,6 @@ const App = () => (
 * React组件暂时只实现了部分功能。
 
 ## 🔗 链接
+* [Home](https://0xllllh.github.io/react-krpano/)
+* [组件参数](https://0xllllh.github.io/react-krpano/#/components)
 * [Krpano官方文档](https://krpano.com/docu/xml/)
