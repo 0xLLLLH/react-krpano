@@ -39,7 +39,7 @@ interface ViewProps {
     ox?: number;
     oy?: number;
     oz?: number;
-    children: null;
+    children?: null;
 }
 
 const View: React.FC<ViewProps> = ({ children, ...viewAttrs }) => {
@@ -49,7 +49,7 @@ const View: React.FC<ViewProps> = ({ children, ...viewAttrs }) => {
         renderer?.setTag('view', null, { ...viewAttrs });
     }, [viewAttrs]);
 
-    return <div className="view"></div>;
+    return <div className="view">{children}</div>;
 };
 
 export default View;
