@@ -24,7 +24,7 @@ export class KrpanoActionProxy {
         this.krpanoRenderer?.call(actionStr);
     }
 
-    set(name: string, ...params: (string | number | boolean)[]): void {
+    set(name: string, ...params: Array<string | number | boolean>): void {
         this.call(buildKrpanoAction('set', name, ...params));
     }
 
