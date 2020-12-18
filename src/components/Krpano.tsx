@@ -11,10 +11,12 @@ interface KrpanoProps {
     currentScene?: string;
     /** Krpano XML地址 */
     xml?: string;
+    target?: string;
+    id?: string;
     onReady?: (renderer: KrpanoActionProxy) => void;
 }
 
-const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, xml, onReady, children }) => {
+const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, target = 'krpano', id, xml, onReady, children }) => {
     const [renderer, setRenderer] = React.useState<KrpanoActionProxy | null>(null);
     const onReadyCallback = React.useCallback(
         (obj: NativeKrpanoRendererObject) => {
@@ -31,7 +33,8 @@ const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, xml, onReady, 
     );
 
     useKrpano({
-        target: 'krpano',
+        target,
+        id,
         xml: xml || null,
         onready: onReadyCallback,
     });
@@ -39,7 +42,7 @@ const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, xml, onReady, 
     return (
         <KrpanoRendererContext.Provider value={renderer}>
             <CurrentSceneContext.Provider value={currentScene || null}>
-                <div id="krpano" className={className}>
+                <div id={target} className={className}>
                     {renderer ? children : null}
                 </div>
             </CurrentSceneContext.Provider>

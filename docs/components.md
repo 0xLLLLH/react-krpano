@@ -8,6 +8,8 @@ Krpano组件负责krpano的初始化。
 |:--|:--:|:--:|:--|
 | className | string |  | 根节点的className|
 | currentScene | string | | 当前展示的场景名，需要与Scene的name属性对应 |
+| target | string | | 组件渲染的dom元素的id，krpano将被渲染到该元素上 |
+| id | string | | 内部JavaScriptInterfaceObjective的id，多个krpano实例的id需要不同 |
 | xml | string | | xml地址，可以通过该参数直接展示全景图。也是后续渲染的基础。 |
 | onReady | EventCallback |  | krpano的onready回调触发后调用 |
 
