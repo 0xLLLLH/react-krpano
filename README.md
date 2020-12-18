@@ -172,17 +172,20 @@ const App = () => {
 };
 ```
 
-此外，对于style和action等标签，可以在写在xml中，而后通过Krpano的`xml`属性引入。xml属性的内容会和React渲染的内容同时存在
+此外，对于style和action等标签，可以在写在xml中，而后通过Krpano的`xml`属性引入。xml属性的内容会和React渲染的内容同时存在。
+**pano.xml**
 ```xml
 <krpano>
     <style name="hotspot_style" url="hotspot.png" scale="0.5" edge="top" distorted="true" onover="tween(scale,0.55);" onout="tween(scale,0.5);" />
     ...
 </krpano>
 ```
+**App.tsx**
 ```tsx
 const App = () => (
     <Krpano
         className="App"
+        xml="/pano.xml"
         currentScene="scene0"
     >
         <Scene name="scene0" previewUrl="/preview.jpg">
