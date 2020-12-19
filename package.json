@@ -27,9 +27,10 @@
     "build": "tsc -p ./tsconfig.typing.json && rollup -c",
     "lint": "eslint src --fix --ext .ts,.tsx",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
+    "postrelease": "yarn run docs",
     "release:alpha": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease alpha",
     "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc",
-    "prepublish": "yarn run build && yarn run docs"
+    "prepublish": "yarn run build"
   },
   "repository": {
     "type": "git",

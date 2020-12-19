@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/0xLLLLH/react-krpano/compare/v0.1.1...v0.1.2) (2020-12-19)
+
+
+### Features
+
+* ✨krpano组件支持设置target和id ([cd396af](https://github.com/0xLLLLH/react-krpano/commit/cd396af5537b0f3918013a59d22c516d6f4d8097))
+
 ## [0.1.1](https://github.com/0xLLLLH/react-krpano/compare/v0.1.0...v0.1.1) (2020-12-17)
 
 
