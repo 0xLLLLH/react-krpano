@@ -18,6 +18,7 @@
     "node": ">=10"
   },
   "scripts": {
+    "docs": "BABEL_ENV=\"script\" babel-node --extensions \".ts\" ./scripts/syncDoc.ts",
     "clean": "rm -rf ./dist",
     "watch": "concurrently --kill-others \"npm:watch-*\"",
     "watch-types": "tsc -w -p ./tsconfig.typing.json",
@@ -28,7 +29,7 @@
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "release:alpha": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease alpha",
     "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc",
-    "prepublish": "yarn run build"
+    "prepublish": "yarn run build && yarn run docs"
   },
   "repository": {
     "type": "git",
@@ -50,6 +51,8 @@
   },
   "homepage": "https://github.com/0xLLLLH/react-krpano#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
@@ -66,6 +69,7 @@
     "@rollup/plugin-url": "^6.0.0",
     "@types/escape-html": "^1.0.0",
     "@types/eslint": "^7.2.5",
+    "@types/glob": "^7.1.3",
     "@types/jest": "^26.0.16",
     "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",
@@ -81,6 +85,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "glob": "^7.1.6",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",

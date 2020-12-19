@@ -12,7 +12,7 @@ module.exports = api => {
                     targets: {
                         node: 'current',
                     },
-                    modules: false,
+                    modules: process.env.BABEL_ENV === 'script' ? 'auto' : false,
                 },
             ],
             '@babel/preset-react',
