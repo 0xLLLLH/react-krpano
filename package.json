@@ -50,7 +50,7 @@
   "bugs": {
     "url": "https://github.com/0xLLLLH/react-krpano/issues"
   },
-  "homepage": "https://github.com/0xLLLLH/react-krpano#readme",
+  "homepage": "https://0xllllh.github.io/react-krpano/",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
