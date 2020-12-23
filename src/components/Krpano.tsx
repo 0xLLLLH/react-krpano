@@ -42,7 +42,7 @@ const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, target = 'krpa
     return (
         <KrpanoRendererContext.Provider value={renderer}>
             <CurrentSceneContext.Provider value={currentScene || null}>
-                <div id={target} className={className}>
+                <div id={target} className={className} style={className ? {} : { width: '100vw', height: '100vh' }}>
                     {renderer ? children : null}
                 </div>
             </CurrentSceneContext.Provider>
