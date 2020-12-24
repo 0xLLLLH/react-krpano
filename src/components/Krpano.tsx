@@ -6,7 +6,7 @@ import KrpanoActionProxy from '../KrpanoActionProxy';
 import { NativeKrpanoRendererObject } from '../types';
 import { Logger } from '../utils';
 
-interface KrpanoProps {
+export interface KrpanoProps {
     className?: string;
     currentScene?: string;
     /** Krpano XML地址 */
@@ -16,7 +16,15 @@ interface KrpanoProps {
     onReady?: (renderer: KrpanoActionProxy) => void;
 }
 
-const Krpano: React.FC<KrpanoProps> = ({ className, currentScene, target = 'krpano', id, xml, onReady, children }) => {
+export const Krpano: React.FC<KrpanoProps> = ({
+    className,
+    currentScene,
+    target = 'krpano',
+    id,
+    xml,
+    onReady,
+    children,
+}) => {
     const [renderer, setRenderer] = React.useState<KrpanoActionProxy | null>(null);
     const onReadyCallback = React.useCallback(
         (obj: NativeKrpanoRendererObject) => {

@@ -18,10 +18,9 @@ export interface SceneImageWithMultires {
     asPreview?: boolean;
 }
 
-interface SceneProps {
+export interface SceneProps {
     name: string;
     previewUrl?: string;
-    onStart?: () => void;
     /** 直接指定scene的xml内容。指定后会忽略其他设置 */
     content?: string;
     /** image标签的附加属性，仅少部分情况用到 */
@@ -30,7 +29,14 @@ interface SceneProps {
     images?: [SceneImage] | SceneImageWithMultires[];
 }
 
-const Scene: React.FC<SceneProps> = ({ name, previewUrl, imageTagAttributes = {}, images = [], content, children }) => {
+export const Scene: React.FC<SceneProps> = ({
+    name,
+    previewUrl,
+    imageTagAttributes = {},
+    images = [],
+    content,
+    children,
+}) => {
     const renderer = useContext(KrpanoRendererContext);
     const currentScene = useContext(CurrentSceneContext);
 

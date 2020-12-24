@@ -3,7 +3,7 @@ import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
 import { EventCallback } from '../types';
 import { mapEventPropsToJSCall } from '../utils';
 
-interface EventsConfig {
+export interface EventsConfig {
     /** 事件名，若存在该参数则为局部事件 */
     name?: string;
     keep?: boolean;
@@ -39,11 +39,11 @@ interface EventsConfig {
     onIPhoneFullscreen?: EventCallback;
 }
 
-interface EventsProps extends EventsConfig {}
+export interface EventsProps extends EventsConfig {}
 
 const GlobalEvents = '__GlobalEvents';
 
-const Events: React.FC<EventsProps> = ({ name, keep, children, ...EventsAttrs }) => {
+export const Events: React.FC<EventsProps> = ({ name, keep, children, ...EventsAttrs }) => {
     const renderer = React.useContext(KrpanoRendererContext);
     const EventSelector = `events[${name || GlobalEvents}]`;
 

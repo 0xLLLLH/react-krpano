@@ -3,7 +3,7 @@ import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
 import { EventCallback } from '../types';
 import { Logger, mapEventPropsToJSCall, mapObject } from '../utils';
 
-interface ImageHotspotConfig {
+export interface ImageHotspotConfig {
     name: string;
     url: string;
     type?: string;
@@ -37,9 +37,9 @@ interface ImageHotspotConfig {
     onLoaded?: EventCallback;
 }
 
-interface HotspotProps extends ImageHotspotConfig {}
+export interface HotspotProps extends ImageHotspotConfig {}
 
-const Hotspot: React.FC<HotspotProps> = ({ name, children, ...hotspotAttrs }) => {
+export const Hotspot: React.FC<HotspotProps> = ({ name, children, ...hotspotAttrs }) => {
     const renderer = useContext(KrpanoRendererContext);
     const EventSelector = `hotspot[${name}]`;
 

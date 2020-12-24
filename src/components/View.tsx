@@ -4,7 +4,7 @@ import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
 /**
  * @see https://krpano.com/docu/xml/#view
  */
-interface ViewProps {
+export interface ViewProps {
     hlookat?: number;
     vlookat?: number;
     fov?: number;
@@ -42,7 +42,7 @@ interface ViewProps {
     children?: null;
 }
 
-const View: React.FC<ViewProps> = ({ children, ...viewAttrs }) => {
+export const View: React.FC<ViewProps> = ({ children, ...viewAttrs }) => {
     const renderer = useContext(KrpanoRendererContext);
 
     React.useEffect(() => {
