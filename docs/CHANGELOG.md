@@ -2,7 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.1.2](https://github.com/0xLLLLH/react-krpano/compare/v0.1.1...v0.1.2) (2020-12-19)
+## [0.1.3](https://github.com/0xLLLLH/react-krpano/compare/v0.1.2...v0.1.3) (2021-01-03)
+
+
+### Features
+
+* ✨Krpano组件添加默认大小 ([fa8d678](https://github.com/0xLLLLH/react-krpano/commit/fa8d678228443b5f86a950d0d0548f5758904ab3))
+
+
+### Bug Fixes
+
+* 🐞修复各个组件的相关interface未导出的问题 ([604eb56](https://github.com/0xLLLLH/react-krpano/commit/604eb56a53389b4e05c5bb51b2d2ed1f4a63c006))
+
+## [0.1.2](https://github.com/0xLLLLH/react-krpano/compare/v0.1.1...v0.1.2) (2020-12-19)
 
 
 ### Features
