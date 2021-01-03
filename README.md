@@ -9,6 +9,7 @@
 [npm-image]: https://img.shields.io/npm/v/@0xllllh/react-krpano?style=flat-square
 [npm-url]: https://www.npmjs.com/package/@0xllllh/react-krpano
 
+[Demo](https://0xllllh.github.io/react-krpano-examples)
 ## ✨ 特性
 * 动态渲染场景和热点，无需生成xml
 * 使用Typescript开发，提供完整的类型定义文件。
@@ -208,5 +209,6 @@ const App = () => (
 ## 🔗 链接
 * [Home](https://0xllllh.github.io/react-krpano/)
 * [组件参数](https://0xllllh.github.io/react-krpano/#/components)
+* [示例项目](https://github.com/0xLLLLH/react-krpano-examples)
 * [CHANGELOG](./CHANGELOG.md)
 * [Krpano官方文档](https://krpano.com/docu/xml/)
