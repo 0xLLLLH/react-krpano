@@ -5,7 +5,7 @@ import { Logger, mapEventPropsToJSCall, mapObject } from '../utils';
 
 export interface ImageHotspotConfig {
     name: string;
-    url: string;
+    url?: string;
     type?: string;
     keep?: boolean;
     visible?: boolean;
