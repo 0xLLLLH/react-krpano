@@ -14,6 +14,7 @@ export interface KrpanoProps {
     target?: string;
     id?: string;
     onReady?: (renderer: KrpanoActionProxy) => void;
+    enableLogger?: boolean;
 }
 
 export const Krpano: React.FC<KrpanoProps> = ({
@@ -24,6 +25,7 @@ export const Krpano: React.FC<KrpanoProps> = ({
     xml,
     onReady,
     children,
+    enableLogger = false,
 }) => {
     const [renderer, setRenderer] = React.useState<KrpanoActionProxy | null>(null);
     const onReadyCallback = React.useCallback(
@@ -31,6 +33,7 @@ export const Krpano: React.FC<KrpanoProps> = ({
             const renderer = new KrpanoActionProxy(obj);
             (window as any)[renderer.name] = renderer;
             setRenderer(renderer);
+            Logger.enabled = enableLogger;
             Logger.log('Renderer ready.');
 
             if (onReady) {

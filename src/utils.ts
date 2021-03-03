@@ -44,9 +44,10 @@ export const buildKrpanoTagSetterActions = (
         .join('');
 
 export const Logger = {
+    enabled: false,
     log: (...args: any[]): void => {
         /* istanbul ignore next */
-        if (process.env.NODE_ENV === 'development') {
+        if (Logger.enabled && process.env.NODE_ENV === 'development') {
             console.log(...args);
         }
     },
