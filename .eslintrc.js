@@ -24,6 +24,7 @@ module.exports = {
     rules: {
         // typescript
         '@typescript-eslint/no-parameter-properties': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
         // 不限制
         '@typescript-eslint/explicit-member-accessibility': 'off',
         '@typescript-eslint/no-empty-interface': 'off',

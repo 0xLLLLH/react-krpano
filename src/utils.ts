@@ -26,10 +26,10 @@ export const buildKrpanoTagSetterActions = (
                 return '';
             }
             // 如果属性值中有双引号，需要改用单引号
-            let quete = '"';
-            if (val.toString().includes(quete)) {
+            let quote = '"';
+            if (val.toString().includes(quote)) {
                 // eslint-disable-next-line quotes
-                quete = "'";
+                quote = "'";
             }
             if (key === 'style') {
                 return `assignstyle(${name}, ${val});`;
@@ -38,13 +38,14 @@ export const buildKrpanoTagSetterActions = (
                 return `set(${name}.${key}, ${val});`;
             }
             // content是XML文本，不能转义，因为不涉及用户输入也不需要
-            return `set(${name}.${key}, ${quete}${key === 'content' ? val : escapeHTML(val.toString())}${quete});`;
+            return `set(${name}.${key}, ${quote}${key === 'content' ? val : escapeHTML(val.toString())}${quote});`;
         })
         .filter(str => !!str)
         .join('');
 
 export const Logger = {
     log: (...args: any[]): void => {
+        /* istanbul ignore next */
         if (process.env.NODE_ENV === 'development') {
             console.log(...args);
         }
@@ -71,6 +72,9 @@ export const buildXML = ({ tag, attrs, children }: XMLMeta): string => {
     return `<${tag} ${attributes} />`;
 };
 
+/**
+ * 对Object进行map操作
+ */
 export const mapObject = (
     obj: Record<string, unknown>,
     mapper: (key: string, value: unknown) => Record<string, unknown>
@@ -84,6 +88,10 @@ export const mapObject = (
     );
 };
 
+/**
+ * 提取某个对象中的onXXX属性并替换为对应的调用字符串，丢弃其他属性
+ * 主要用于绑定Krpano事件和js调用
+ */
 export const mapEventPropsToJSCall = (
     obj: Record<string, unknown>,
     getString: (key: string, value: unknown) => string

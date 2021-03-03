@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildKrpanoAction() call 1`] = `"set(view.fov, 120);"`;
+
+exports[`buildKrpanoAction() call 2`] = `"addhotspot(hotspotName);"`;
+
+exports[`buildKrpanoAction() call 3`] = `"loadscene(scene1, null, MERGE, BLEND(0.5));"`;
+
+exports[`buildKrpanoTagSetterActions() assignstyle 1`] = `"set(hotspot[hotspotName].ath, 10);set(hotspot[hotspotName].atv, 20);assignstyle(hotspot[hotspotName], hotspot_style1);"`;
+
+exports[`buildKrpanoTagSetterActions() call with tag name 1`] = `"set(scene[scene1].autoload, false);set(scene[scene1].content, '<preview url=\\"/preview.jpg\\" />');"`;
+
+exports[`buildKrpanoTagSetterActions() call with tag name 2`] = `"set(hotspot[hotspotName].ath, 10);set(hotspot[hotspotName].atv, 20);"`;
+
+exports[`buildKrpanoTagSetterActions() call without tag name 1`] = `"set(view.fov, 90);"`;
+
+exports[`buildKrpanoTagSetterActions() escape string 1`] = `"set(hotspot[hotspotName].needescape, \\"&lt;div&gt;It&#39;s normal string&lt;/div&gt;\\");set(hotspot[hotspotName].content, \\"<xml>It's xml string, keep everything</xml>\\");"`;
+
+exports[`buildXML() children empty array 1`] = `"<tagName key1=\\"val1\\" key2=\\"2\\" />"`;
+
+exports[`buildXML() empty attrs & children 1`] = `"<tagName  />"`;
+
+exports[`buildXML() empty children 1`] = `"<tagName key1=\\"val1\\" key2=\\"2\\" />"`;
+
+exports[`buildXML() one childreny 1`] = `"<tagName key1=\\"val1\\" key2=\\"2\\"><inner k=\\"v\\" /></tagName>"`;
