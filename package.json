@@ -32,7 +32,7 @@
     "postrelease": "yarn run docs",
     "release:alpha": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease alpha",
     "release:rc": "HUSKY_SKIP_HOOKS=1 standard-version --prerelease rc",
-    "prepublish": "yarn run build"
+    "prepare": "yarn run build"
   },
   "repository": {
     "type": "git",
