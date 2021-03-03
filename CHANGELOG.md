@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.4](https://github.com/0xLLLLH/react-krpano/compare/v0.1.3...v0.1.4) (2021-03-03)
+
+
+### Features
+
+* ✨Krpano组件支持enableLogger参数 ([158955f](https://github.com/0xLLLLH/react-krpano/commit/158955fbe77a045a85c9f3867742780d69759050))
+
+
 ## [0.1.3](https://github.com/0xLLLLH/react-krpano/compare/v0.1.2...v0.1.3) (2021-01-03)
 
 
