@@ -60,6 +60,7 @@ export const Hotspot: React.FC<HotspotProps> = ({ name, children, ...hotspotAttr
             renderer?.unbindEvents(EventSelector, eventsObj as any);
             renderer?.removeHotspot(name);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     React.useEffect(() => {

@@ -90,8 +90,7 @@ export const mapObject = (
 };
 
 /**
- * 提取某个对象中的onXXX属性并替换为对应的调用字符串，丢弃其他属性
- * 主要用于绑定Krpano事件和js调用
+ * 主要用于绑定Krpano事件和js调用。提取某个对象中的onXXX属性并替换为对应的调用字符串，丢弃其他属性
  */
 export const mapEventPropsToJSCall = (
     obj: Record<string, unknown>,

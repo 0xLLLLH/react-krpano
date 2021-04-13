@@ -1,6 +1,7 @@
 import React from 'react';
 import { CurrentSceneContext } from '../contexts/CurrentSceneContext';
 import { KrpanoRendererContext } from '../contexts/KrpanoRendererContext';
+import useEventCallback from '../hooks/useEventCallback';
 import { useKrpano } from '../hooks/useKrpano';
 import KrpanoActionProxy from '../KrpanoActionProxy';
 import { NativeKrpanoRendererObject } from '../types';
@@ -28,6 +29,7 @@ export const Krpano: React.FC<KrpanoProps> = ({
     enableLogger = false,
 }) => {
     const [renderer, setRenderer] = React.useState<KrpanoActionProxy | null>(null);
+    const onReadyRef = useEventCallback(onReady);
     const onReadyCallback = React.useCallback(
         (obj: NativeKrpanoRendererObject) => {
             const renderer = new KrpanoActionProxy(obj);
@@ -36,19 +38,23 @@ export const Krpano: React.FC<KrpanoProps> = ({
             Logger.enabled = enableLogger;
             Logger.log('Renderer ready.');
 
-            if (onReady) {
-                onReady(renderer);
+            if (onReadyRef.current) {
+                onReadyRef.current(renderer);
             }
         },
-        [xml]
+        [enableLogger, onReadyRef]
+    );
+    const krpanoConfig = React.useMemo(
+        () => ({
+            target,
+            id,
+            xml: xml || null,
+            onready: onReadyCallback,
+        }),
+        [target, id, xml, onReadyCallback]
     );
 
-    useKrpano({
-        target,
-        id,
-        xml: xml || null,
-        onready: onReadyCallback,
-    });
+    useKrpano(krpanoConfig);
 
     return (
         <KrpanoRendererContext.Provider value={renderer}>

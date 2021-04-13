@@ -18,5 +18,5 @@ export const useKrpano = (config: IKrpanoConfig): void => {
             // TODO: install krpano
             throw new Error('Krpano required');
         }
-    }, [config.target, config.xml]);
+    }, [config]);
 };

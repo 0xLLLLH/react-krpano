@@ -97,7 +97,7 @@ export const Scene: React.FC<SceneProps> = ({
         return () => {
             renderer?.removeScene(name);
         };
-    }, [renderer, name, images, imageTagAttributes, content]);
+    }, [renderer, name, images, imageTagAttributes, content, previewUrl]);
 
     React.useEffect(() => {
         if (currentScene === name) {

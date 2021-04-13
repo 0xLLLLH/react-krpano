@@ -47,7 +47,7 @@ export const View: React.FC<ViewProps> = ({ children, ...viewAttrs }) => {
 
     React.useEffect(() => {
         renderer?.setTag('view', null, { ...viewAttrs });
-    }, [viewAttrs]);
+    }, [renderer, viewAttrs]);
 
     return <div className="view">{children}</div>;
 };

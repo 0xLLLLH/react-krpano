@@ -6,6 +6,7 @@ import { mapEventPropsToJSCall } from '../utils';
 export interface EventsConfig {
     /** 事件名，若存在该参数则为局部事件 */
     name?: string;
+    /** 暂时不支持 */
     keep?: boolean;
     onEnterFullscreen?: EventCallback;
     onExitFullscreen?: EventCallback;
@@ -45,8 +46,9 @@ const GlobalEvents = '__GlobalEvents';
 
 export const Events: React.FC<EventsProps> = ({ name, keep, children, ...EventsAttrs }) => {
     const renderer = React.useContext(KrpanoRendererContext);
-    const EventSelector = `events[${name || GlobalEvents}]`;
+    const EventSelector = React.useMemo(() => `events[${name || GlobalEvents}]`, [name]);
 
+    // 在renderer上绑定回调
     React.useEffect(() => {
         renderer?.bindEvents(EventSelector, { ...EventsAttrs });
 
@@ -55,14 +57,19 @@ export const Events: React.FC<EventsProps> = ({ name, keep, children, ...EventsA
         };
     }, [renderer, EventsAttrs, EventSelector]);
 
+    // Krpano标签上添加js call，触发事件
     React.useEffect(() => {
         renderer?.setTag(
             'events',
             // 全局事件直接设置
             name || null,
-            mapEventPropsToJSCall({ ...EventsAttrs }, key => `js(${renderer.name}.fire(${key},${EventSelector}))`)
+            mapEventPropsToJSCall(
+                { ...EventsAttrs },
+                eventName => `js(${renderer.name}.fire(${eventName},${EventSelector}))`
+            )
         );
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [EventSelector, name, renderer]);
 
     return <div className="events"></div>;
 };
