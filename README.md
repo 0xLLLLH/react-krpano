@@ -10,29 +10,29 @@
 [npm-url]: https://www.npmjs.com/package/@0xllllh/react-krpano
 
 [Demo](https://0xllllh.github.io/react-krpano-examples)
-## ✨ 特性
-* 动态渲染场景和热点，无需生成xml
-* 使用Typescript开发，提供完整的类型定义文件。
+## ✨ Features
+* Dynamic rendering of scenes and hotspots without generating xml
+* Use Typescript to develop and provide a complete type definition file.
 
-## 🖥 依赖
+## 🖥 Dependencies
 
 * krpano.js >= 1.20.9
 * React >= 16.8
 
-## 📦 安装
+## 📦 Installation
 
-* 安装npm包
+* With NPM
 ``` bash
 yarn add @0xllllh/react-krpano
 ```
-* 从[Krpano官网](https://krpano.com/download/)下载最新的Krpano并解压得到krpano.js，然后通过script标签引入，使`window.embedpano`函数可用
+* Download the latest Krpano from [Krpano official website](https://krpano.com/download/) and unzip it to get JS file, then import it through the script tag of your index.html to make the script available globally.
 ```html
 <script src="krpano.js"></script>
 ```
 
-## 🔨 使用方法
-### 加载xml
-最基础的用法是通过`Krpano`组件的`xml`参数直接加载krpano xml文件。Krpano组件会忠实的按照xml的配置来进行渲染。
+## 🔨 How to use
+### Loading XML file
+The most basic usage is to directly load the krpano xml file through `Krpano` the `xml` parameters of the component . The Krpano component will faithfully render according to the xml configuration.
 
 **krpano.xml**
 ```xml
@@ -66,11 +66,10 @@ yarn add @0xllllh/react-krpano
 ReactDOM.render(<Krpano className="App" xml="/krpano.xml" />, document.getElementById('app'));
 ```
 
-### 场景的展示及切换
-> 为了简化实现和使用，krpano的image标签的功能被合并到了Scene组件中。通过Scene组件的images属性可以指定场景展示的图片。
+### Scene display and switching
+> In order to simplify the implementation and use, the implementation of krpano's image tag has been merged into the Scene component. The images of the scene can be specified through the `images` props of Scene component
 
-想要添加一个场景，需要使用Scene组件。
-每个Scene组件代表一个场景，可以通过Krpano组件的`currentScene`来显示与切换当前展示的场景。
+To add a scene, you need to use the Scene component. Each one represents a scene, and active scene can be specified through the `currentScene` prop of Krpano component.
 
 ```tsx
 ReactDOM.render(
@@ -94,16 +93,16 @@ ReactDOM.render(
 document.getElementById('app'));
 ```
 
-### 热点的使用
+### Hotspots
 
-> 目前只支持图片热点
+> Currently support only image hotspots
 
-使用Hotspot组件可以轻松的渲染热点。同时Hotspot组件还支持一系列的回调设置。
+Hotspots can be easily rendered using Hotspot component. It support a bunch of callback settings
 
 ```tsx
 const App = () => {
     const [currentScene, setCurrentScene] = React.useState('scene0');
-    // 元数据
+    // Datas
     const scenes = [{
         name: 'scene0',
         previewUrl: '/preview.jpg',
@@ -136,10 +135,10 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
-### 使用暂未支持的功能
-由于本项目刚开始开发，很多组件和功能都还没完善，如果有需要优先支持的功能可以提issue。倘若急于使用，则可以在获取到`KrpanoActionProxy`后自行调用krpano功能。
+### Access unsuported features
+Since this project has just started development, many components and functions are not yet completed. If there is a function that needs priority support, you can raise an issue on Github. If you want, you can use the `KrpanoActionProxy` to call the krpano functions by yourself after obtaining it.
 
-各种回调函数都会获得KrpanoActionProxy实例作为参数，可以使用其中封装的方法来控制krpano。也可以通过`renderer.krpanoRenderer`获取krpano原生的实例。
+Various callback functions will get the KrpanoActionProxy instance as a parameter, and the encapsulated method can be used to control krpano. You can also use `renderer.KrpanoRenderer` to get a native instance of krpano.
 ```tsx
 const App = () => {
     const [currentScene, setCurrentScene] = React.useState('scene0');
@@ -173,7 +172,8 @@ const App = () => {
 };
 ```
 
-此外，对于style和action等标签，可以在写在xml中，而后通过Krpano的`xml`属性引入。xml属性的内容会和React渲染的内容同时存在。
+In addition, tags such as style and action can be written in xml, then imported through `xml` prop of Krpano component.
+
 **pano.xml**
 ```xml
 <krpano>
@@ -201,14 +201,14 @@ const App = () => (
     </Krpano>
 );
 ```
-## ❗️ 限制
+## ❗️ Restrictions
 
-* 一个页面同一时间仅展示一个krpano全景图。如果需要同时展示多个全景图，更轻量的方案会比较合适。
-* React组件暂时只实现了部分功能。
+* Only one krpano panorama is displayed on a page at a time. If you need to display multiple panoramas at the same time, a lighter solution will be more appropriate.
+* React components only implement part of their functions for the time being.
 
-## 🔗 链接
+## 🔗 Link
 * [Home](https://0xllllh.github.io/react-krpano/)
-* [组件参数](https://0xllllh.github.io/react-krpano/#/components)
-* [示例项目](https://github.com/0xLLLLH/react-krpano-examples)
-* [CHANGELOG](./CHANGELOG.md)
-* [Krpano官方文档](https://krpano.com/docu/xml/)
+* [Components Documentation](https://0xllllh.github.io/react-krpano/#/components)
+* [Demo project](https://github.com/0xLLLLH/react-krpano-examples)
+* [CHANGELOG](/CHANGELOG.md)
+* [Krpano official website](https://krpano.com/docu/xml/)

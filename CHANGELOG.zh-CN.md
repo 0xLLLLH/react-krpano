@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+所有值得记录的修改会在这个文档中留档。查阅[standard-version](https://github.com/conventional-changelog/standard-version)来了解提交规范。
 
 ## [0.1.4](https://github.com/0xLLLLH/react-krpano/compare/v0.1.3...v0.1.4) (2021-03-03)
 
