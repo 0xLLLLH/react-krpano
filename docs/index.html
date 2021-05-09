@@ -13,17 +13,39 @@
 <body>
   <div id="app"></div>
   <script>
+    var lang = location.hash.match(/#\/(en-us|zh-cn)\//);
+
+    if (lang) {
+      document.documentElement.setAttribute('lang', lang[1]);
+    } else {
+      window.location.hash = '#/en-us/'
+    }
+
     window.$docsify = {
       name: 'React Krpano',
       repo: 'https://github.com/0xLLLLH/react-krpano',
       loadSidebar: true,
+      loadNavbar: true,
       subMaxLevel: 3,
       search: 'auto',
-      coverpage: ['/en/', '/zh/']
+      noData: {
+        '/zh-cn/': '没有结果!',
+        '/en-us': 'No results!',
+      },
+      paths: 'auto',
+      placeholder: {
+        '/zh-cn/': '搜索',
+        '/en-us/': 'Search',
+      },
+      pathNamespaces: ['/en-us', '/zh-cn'],
+      alias: {
+        '/': '/en-us/',
+      }
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-markup.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-jsx.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-typescript.min.js"></script>

@@ -1,6 +1,5 @@
 
-* [Home](/)
-* [Components](components.md)
-* [KrpanoActionProxy](krpano-action-proxy.md)
-* [Change Log](CHANGELOG.md)
-* [English Version](../en/)
+* [Home](zh-cn/)
+* [Components](zh-cn/components.md)
+* [KrpanoActionProxy](zh-cn/krpano-action-proxy.md)
+* [Change Log](zh-cn/CHANGELOG.md)
