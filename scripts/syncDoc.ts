@@ -5,7 +5,7 @@ import p from 'path';
 const docPath = './docs';
 
 function syncMDFiles() {
-    glob('./**.md', (err, files) => {
+    glob('./!(CHANGELOG|README)*.md', (err, files) => {
         files.forEach(path => {
             const target = p.join(docPath, path.replace('./', '/'));
             console.log(`Moving doc from ${path} to ${target}`);
