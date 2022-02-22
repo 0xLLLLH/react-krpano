@@ -24,8 +24,6 @@ module.exports = api => {
                 '@babel/transform-runtime',
                 {
                     regenerator: true,
-                    // 测试环境使用commonjs
-                    useESModules: !isTest,
                 },
             ],
             [`@babel/plugin-proposal-decorators`, { legacy: true }],

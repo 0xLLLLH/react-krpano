@@ -18,7 +18,8 @@
     "importHelpers": true,
     "noEmitHelpers": true,
     "noEmit": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "example"]

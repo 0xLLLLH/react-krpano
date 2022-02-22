@@ -14,9 +14,6 @@
     "dist",
     "src"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
     "docs": "BABEL_ENV=\"script\" babel-node --extensions \".ts\" ./scripts/syncDoc.ts",
     "clean": "rm -rf ./dist",
