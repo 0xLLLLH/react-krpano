@@ -104,3 +104,6 @@ dist
 .tern-port
 
 *.tsbuildinfo
+
+# Intelij IDE
+.idea

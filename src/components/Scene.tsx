@@ -21,6 +21,7 @@ export interface SceneImageWithMultires {
 export interface SceneProps {
     name: string;
     previewUrl?: string;
+    previewType?: string;
     /** 直接指定scene的xml内容。指定后会忽略其他设置 */
     content?: string;
     /** image标签的附加属性，仅少部分情况用到 */
@@ -32,6 +33,7 @@ export interface SceneProps {
 export const Scene: React.FC<SceneProps> = ({
     name,
     previewUrl,
+    previewType,
     imageTagAttributes = {},
     images = [],
     content,
@@ -86,12 +88,12 @@ export const Scene: React.FC<SceneProps> = ({
             });
         }
 
+        const previewTag = `<preview ${previewUrl ? `url="${previewUrl}` : ''} 
+                            ${previewType ? `type="${previewType}` : ''}" />`;
         renderer?.setTag('scene', name, {
             content:
                 content ||
-                `${previewUrl ? `<preview url="${previewUrl}" />` : ''}${
-                    images.length > 0 ? buildXML(contentImageMeta) : ''
-                }`,
+                `${previewUrl || previewType ? previewTag : ''} ${images.length > 0 ? buildXML(contentImageMeta) : ''}`,
         });
 
         return () => {
