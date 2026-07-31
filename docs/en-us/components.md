@@ -70,6 +70,7 @@ Represent krpano scenes
 |:--|:--:|:--:|:--|
 | name | string | ✅ | Scene name |
 | previewUrl | string | | Preview image url, usually a low-quality image |
+| previewType | string | | Preview type to use type="grid" |
 | content | string | | Directly specify the xml content of the scene tag, other settings will be ignored after use |
 | imageTagAttributes | Record | | Set image tag attributes, see the [official documentation](https://krpano.com/docu/xml/#image) for details |
 | images | [SceneImage] or SceneImageWithMultires[] | | Define picture to display in the scene. When length > 1, it will trigger [multires](https://krpano.com/examples/?multires) |
